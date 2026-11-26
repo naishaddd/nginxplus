@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Style guide · NGINX++</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/vendor/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/vendor/fontawesome/css/solid.min.css">
+  <link rel="stylesheet" href="/design.css">
+  <style>.sg-swatch{height:64px;border-radius:var(--np-radius-md);border:1px solid var(--np-line)}</style>
+</head>
+<body>
+  <header class="np-card--console px-8 py-5 flex items-center justify-between" style="background:var(--np-console);color:var(--np-console-ink)">
+    <div class="np-logo"><img src="/logo.svg" width="28" height="28" alt=""> NGINX<span style="color:var(--np-accent)">++</span> <span class="np-muted text-sm font-normal ml-2" style="color:var(--np-console-muted)">Signal design system</span></div>
+    <div class="flex gap-2">
+      <button class="np-btn np-btn--sm" style="background:rgba(255,255,255,.08);color:#fff" onclick="document.documentElement.classList.toggle('dark')"><i class="fa-solid fa-circle-half-stroke"></i>Toggle theme</button>
+      <a href="/" class="np-btn np-btn--primary np-btn--sm">Back to app</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+    <p class="np-muted">Living reference for <code>static/design.css</code>. Rules are in <code>docs/DESIGN.md</code>.</p>
+
+    <section class="space-y-4">
+      <h2 class="np-h2">Colour</h2>
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-4 text-xs">
+        <div><div class="sg-swatch" style="background:var(--np-accent)"></div><b>accent</b><div class="np-muted np-mono">--np-accent</div></div>
+        <div><div class="sg-swatch" style="background:var(--np-paper)"></div><b>paper</b><div class="np-muted np-mono">--np-paper</div></div>
+        <div><div class="sg-swatch" style="background:var(--np-surface)"></div><b>surface</b><div class="np-muted np-mono">--np-surface</div></div>
+        <div><div class="sg-swatch" style="background:var(--np-surface-2)"></div><b>surface-2</b><div class="np-muted np-mono">--np-surface-2</div></div>
+        <div><div class="sg-swatch" style="background:var(--np-ink)"></div><b>ink</b><div class="np-muted np-mono">--np-ink</div></div>
+        <div><div class="sg-swatch" style="background:var(--np-console)"></div><b>console</b><div class="np-muted np-mono">--np-console</div></div>
+        <div><div class="sg-swatch" style="background:var(--np-ok)"></div><b>ok</b></div>
+        <div><div class="sg-swatch" style="background:var(--np-warn)"></div><b>warn</b></div>
+        <div><div class="sg-swatch" style="background:var(--np-error)"></div><b>error</b></div>
+        <div><div class="sg-swatch" style="background:var(--np-info)"></div><b>info</b></div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="np-h2">Type</h2>
+      <div class="np-card np-card--pad space-y-3">
+        <div class="np-eyebrow">Eyebrow · 11px uppercase</div>
+        <div class="np-h1">Edit NGINX with confidence</div>
+        <div class="np-h2">Section title, 20px</div>
+        <div class="np-h3">Card title, 16px</div>
+        <p>Body text, 14px Inter. <span class="np-muted">Muted secondary text.</span></p>
+        <p class="np-mono text-sm">proxy_pass http://api_cluster/; · 10.0.0.1:8080 · /etc/nginx/conf.d/app.conf:12</p>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="np-h2">Buttons</h2>
+      <div class="np-card np-card--pad flex flex-wrap gap-3 items-center">
+        <button class="np-btn np-btn--primary">Apply &amp; reload</button>
+        <button class="np-btn np-btn--secondary">Cancel</button>
+        <button class="np-btn np-btn--dark">Dark</button>
+        <button class="np-btn np-btn--ghost">Ghost</button>
+        <button class="np-btn np-btn--danger">Restore &amp; reload</button>
+        <button class="np-btn np-btn--primary" disabled>Disabled</button>
+        <button class="np-btn np-btn--secondary np-btn--sm"><i class="fa-solid fa-play"></i>Small</button>
+        <button class="np-btn np-btn--primary np-btn--lg">Large</button>
+        <button class="np-btn np-btn--secondary np-btn--icon" aria-label="Refresh"><i class="fa-solid fa-arrows-rotate"></i></button>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="np-h2">Status</h2>
+      <div class="np-card np-card--pad flex flex-wrap gap-3">
+        <span class="np-badge np-badge--ok"><span class="np-dot"></span>Healthy</span>
+        <span class="np-badge np-badge--warn"><span class="np-dot"></span>Degraded</span>
+        <span class="np-badge np-badge--error"><span class="np-dot"></span>Down</span>
+        <span class="np-badge np-badge--info"><span class="np-dot"></span>Info</span>
+        <span class="np-badge">Neutral</span>
+        <span class="np-tag">First run</span>
+      </div>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div class="np-alert np-alert--error" role="alert">Wrong setup code. Check the container logs.</div>
+        <div class="np-alert np-alert--ok">Saved, validated and reloaded.</div>
+        <div class="np-alert np-alert--warn">proxy_pass slash mismatch on line 12.</div>
+        <div class="np-alert np-alert--info">Snapshots are stored on the /data volume.</div>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="np-h2">KPI tiles &amp; cards</h2>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="np-card np-kpi"><div class="np-kpi__label">Requests / sec · 1m</div><div class="np-kpi__value">42.17</div><div class="np-kpi__meta">2,530 requests</div></div>
+        <div class="np-card np-kpi"><div class="np-kpi__label">Error rate · 1m</div><div class="np-kpi__value">0.4<span class="text-base np-muted">%</span></div><div class="np-kpi__meta"><span class="np-badge np-badge--ok">9 × 4xx · 0 × 5xx</span></div></div>
+        <div class="np-card np-kpi"><div class="np-kpi__label">Backends</div><div class="np-kpi__value">3<span class="text-base np-muted"> / 4</span></div><div class="np-kpi__meta"><span class="np-badge np-badge--warn"><span class="np-dot"></span>1 down</span></div></div>
+        <div class="np-card np-kpi"><div class="np-kpi__label">No data</div><div class="np-kpi__value">—</div><div class="np-kpi__meta">no upstream blocks configured</div></div>
+      </div>
+      <div class="np-card np-card--pad">
+        <div class="np-card-header"><div><div class="np-eyebrow">Configuration</div><h3 class="np-h3 mt-0.5">nginx -t</h3></div><button class="np-btn np-btn--secondary np-btn--sm">Run check</button></div>
+        <pre class="np-console p-4">nginx: configuration file /etc/nginx/nginx.conf test is successful</pre>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="np-h2">Forms &amp; tables</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <form class="np-card np-card--pad" onsubmit="return false">
+          <div class="np-field"><label class="np-label" for="sg1">Username</label><input class="np-input" id="sg1" value="admin"></div>
+          <div class="np-field"><label class="np-label" for="sg2">Password</label><input class="np-input" id="sg2" type="password" aria-invalid="true" value="short"><p class="np-help" style="color:var(--np-error)">At least 10 characters.</p></div>
+          <div class="np-field"><label class="np-label" for="sg3">Probe interval</label><select class="np-select" id="sg3"><option>5 seconds</option></select></div>
+        </form>
+        <div class="np-card overflow-hidden">
+          <table class="np-table">
+            <thead><tr><th>Backend</th><th>Status</th><th>Latency</th></tr></thead>
+            <tbody>
+              <tr><td class="np-mono">10.0.0.1:8080</td><td><span class="np-badge np-badge--ok"><span class="np-dot"></span>up</span></td><td class="np-mono">3 ms</td></tr>
+              <tr><td class="np-mono">10.0.0.2:8080</td><td><span class="np-badge np-badge--error"><span class="np-dot"></span>down</span></td><td class="np-mono">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

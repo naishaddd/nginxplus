@@ -1,0 +1,21 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes: { label: What happened?, description: Include what you expected instead. }
+    validations: { required: true }
+  - type: textarea
+    id: repro
+    attributes: { label: Steps to reproduce, placeholder: "1. ...\n2. ..." }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: NGINX++ version or commit }
+  - type: input
+    id: nginx
+    attributes: { label: nginx image and version, placeholder: "nginx:1.27-alpine" }
+  - type: textarea
+    id: logs
+    attributes: { label: Logs, description: "`docker logs nginxpp`. Remove tokens before pasting.", render: text }

@@ -1,0 +1,11 @@
+linters:
+  enable: [errcheck, govet, staticcheck, unused, ineffassign, gosec, misspell]
+linters-settings:
+  errcheck:
+    exclude-functions:
+      - (*encoding/json.Encoder).Encode
+      - (net/http.ResponseWriter).Write
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters: [gosec, errcheck]

@@ -1,0 +1,11 @@
+// Package config reads NGINX++ settings from environment variables.
+package config
+
+import "os"
+
+func Env(key, fallback string) string {
+	if val := os.Getenv(key); val != "" {
+		return val
+	}
+	return fallback
+}

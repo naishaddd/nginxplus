@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/design.css">
+  <title>Sign in · NGINX++</title>
+</head>
+<body>
+  <main class="np-auth">
+    <aside class="np-auth__brand">
+      <div class="np-logo text-[17px]"><img src="/logo.svg" width="30" height="30" alt=""> NGINX<span style="color:var(--np-accent)">++</span></div>
+      <div>
+        <span class="np-tag">Open source</span>
+        <h1 class="np-h1 mt-4" style="font-size:40px;line-height:1.08">Edit NGINX with<br>confidence.</h1>
+        <p class="mt-4" style="color:var(--np-console-muted);max-width:38ch">Live traffic, a real service map, linted configs and one-click rollback for the NGINX you already run.</p>
+      </div>
+      <div class="np-mono text-[11px]" style="color:var(--np-console-muted)">Every change: diff → lint → nginx -t → reload → auto-restore</div>
+    </aside>
+    <section class="np-auth__form">
+      <form id="auth-form" data-mode="login" class="np-auth__card" novalidate>
+        <h2 class="np-h2">Sign in</h2>
+        <p class="np-muted mt-1 mb-6">Use the admin account created during setup.</p>
+        <div id="auth-error" class="np-alert np-alert--error mb-4" role="alert" hidden></div>
+        <div class="np-field">
+          <label class="np-label" for="username">Username</label>
+          <input class="np-input" id="username" autocomplete="username" required autofocus>
+        </div>
+        <div class="np-field">
+          <label class="np-label" for="password">Password</label>
+          <input class="np-input" id="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="np-btn np-btn--primary np-btn--lg np-btn--block mt-6">Sign in</button>
+        <p class="np-help mt-6">Forgot the password? Stop NGINX++, delete <code>/data/auth.json</code> from its data volume and restart. You'll be asked to set up the account again. Snapshots are kept.</p>
+      </form>
+    </section>
+  </main>
+  <script src="/auth.js"></script>
+</body>
+</html>
