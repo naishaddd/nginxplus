@@ -10,7 +10,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /nginxpp ./cmd/nginxpp
 
 # Stage 2: minimal runtime image (~25 MB: alpine + ~6 MB binary)
-FROM alpine:3.20
+FROM alpine:3.24
 
 RUN apk add --no-cache ca-certificates tzdata
 
