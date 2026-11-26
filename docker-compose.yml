@@ -1,0 +1,23 @@
+services:
+  # NGINX++ dashboard & web terminal (attaches to an existing nginx container via the Docker socket)
+  nginxpp:
+    build: .
+    container_name: nginxpp
+    restart: unless-stopped
+    ports:
+      # Local-only by default. To expose it, put a TLS reverse proxy in front.
+      - "127.0.0.1:8000:8000"
+    environment:
+      - TARGET_CONTAINER=my-nginx
+      # First run: open the dashboard and create the admin account using the
+      # setup code printed in `docker logs nginxpp`. Optional alternatives:
+      # - NGINXPP_SETUP_CODE=choose-your-own-code
+      # - NGINXPP_ADMIN_USER=admin / NGINXPP_ADMIN_PASSWORD=...   (unattended deploys)
+      # - NGINXPP_API_TOKEN=...   (Bearer token for scripts/CI)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Snapshot history (survives restarts and nginx container re-creation)
+      - nginxpp-data:/data
+
+volumes:
+  nginxpp-data:

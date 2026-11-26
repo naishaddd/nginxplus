@@ -1,0 +1,46 @@
+# Self-contained demo: an nginx with sample configs + NGINX++ attached to it.
+#   make demo   → prints a one-time setup code; open http://localhost:8000 and create the admin account
+#   make demo-down
+services:
+  demo-nginx:
+    image: nginx:1.27-alpine
+    container_name: nginxpp-demo-nginx
+    ports:
+      - "127.0.0.1:8080:80"
+    # Configs are COPIED in at start (not bind-mounted) so edits made in the
+    # NGINX++ editor don't modify the files in this repo.
+    volumes:
+      - ./conf.d:/demo-src:ro
+    command: ["sh", "-c", "cp /demo-src/*.conf /etc/nginx/conf.d/ && exec nginx -g 'daemon off;'"]
+    # upstream hostnames must resolve when nginx starts
+    depends_on: [demo-app, demo-api, demo-auth]
+
+  demo-app:
+    image: hashicorp/http-echo:1.0
+    container_name: nginxpp-demo-app
+    command: ["-text=hello from the demo upstream", "-listen=:5678"]
+
+  demo-api:
+    image: hashicorp/http-echo:1.0
+    container_name: nginxpp-demo-api
+    command: ["-text=hello from demo-api", "-listen=:5678"]
+
+  demo-auth:
+    image: hashicorp/http-echo:1.0
+    container_name: nginxpp-demo-auth
+    command: ["-text=hello from demo-auth", "-listen=:5678"]
+
+  nginxpp:
+    build: ../..
+    container_name: nginxpp-demo
+    depends_on: [demo-nginx]
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - TARGET_CONTAINER=nginxpp-demo-nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - demo-data:/data
+
+volumes:
+  demo-data:

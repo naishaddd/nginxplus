@@ -1,0 +1,31 @@
+# NGINX++
+
+> NGINX++ is a free, open-source (MIT) web dashboard, config editor and web terminal for any NGINX running in Docker. It runs as a small sidecar container (~27 MB image, single static Go binary) that attaches to an existing NGINX container through the Docker socket, without modifying NGINX. It is a self-hosted alternative to editing nginx.conf over SSH, and to paid NGINX management consoles.
+
+Key facts:
+
+- Safe config editing: every change shows a diff, lint findings and a dry-run `nginx -t` before applying; apply takes a snapshot, reloads NGINX, and restores the previous file automatically if the reload fails.
+- Linter for common NGINX mistakes: `proxy_pass` trailing slash, uninherited `Host` header, `add_header` inheritance, `if` inside `location`, weak TLS versions, `server_tokens`, `autoindex`.
+- Snapshots and one-click rollback, stored on their own volume and exportable as `.tar.gz`.
+- Recipe builder: rate limiting, HTTPS redirect, CORS, caching, WebSocket proxy, reverse proxy, basic auth.
+- Live traffic analytics from the access log: requests per second, status codes, top endpoints, top client IPs over 1m/5m/15m windows.
+- Topology graph of ports, servers, locations and upstreams with live backend health, plus a route tester that explains which `server`/`location` handles a given URL.
+- Upstream health, SSL certificate expiry, security grade, and a browser terminal inside the NGINX container.
+- Works offline; no CDN. Admin login with bcrypt, read-only mode, API token for CI.
+
+Install: `TARGET_CONTAINER=my-nginx docker compose up -d`, then open http://localhost:8000 and use the setup code from `docker logs nginxpp`. Demo: `make demo`.
+
+Note: NGINX++ is an independent community project. It is not affiliated with F5, NGINX Inc. or the commercial "NGINX Plus" product.
+
+## Docs
+
+- [README](https://github.com/naishaddd/nginxplus/blob/main/README.md): features, quick start, configuration, security model
+- [Contributing](https://github.com/naishaddd/nginxplus/blob/main/CONTRIBUTING.md): project layout and how to add lint rules, recipes and directive help
+- [Security policy](https://github.com/naishaddd/nginxplus/blob/main/SECURITY.md): reporting and hardening checklist
+- [Design system](https://github.com/naishaddd/nginxplus/blob/main/docs/DESIGN.md): UI rules
+
+## Optional
+
+- [Roadmap](https://github.com/naishaddd/nginxplus/blob/main/ROADMAP.md)
+- [Changelog](https://github.com/naishaddd/nginxplus/blob/main/CHANGELOG.md)
+- [Agent instructions](https://github.com/naishaddd/nginxplus/blob/main/AGENTS.md)

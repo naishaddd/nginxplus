@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/design.css">
+  <title>Set up · NGINX++</title>
+</head>
+<body>
+  <main class="np-auth">
+    <aside class="np-auth__brand">
+      <div class="np-logo text-[17px]"><img src="/logo.svg" width="30" height="30" alt=""> NGINX<span style="color:var(--np-accent)">++</span></div>
+      <div>
+        <span class="np-tag">Open source</span>
+        <h1 class="np-h1 mt-4" style="font-size:40px;line-height:1.08">Edit NGINX with<br>confidence.</h1>
+        <p class="mt-4" style="color:var(--np-console-muted);max-width:38ch">Live traffic, a real service map, linted configs and one-click rollback for the NGINX you already run.</p>
+      </div>
+      <div class="np-mono text-[11px]" style="color:var(--np-console-muted)">Every change: diff → lint → nginx -t → reload → auto-restore</div>
+    </aside>
+    <section class="np-auth__form">
+      <form id="auth-form" data-mode="setup" class="np-auth__card" novalidate>
+        <span class="np-tag">First run</span>
+        <h2 class="np-h2 mt-3">Create the admin account</h2>
+        <p class="np-muted mt-1 mb-6">This happens once. Only someone with the setup code (shown in the container logs) can do it.</p>
+        <div id="auth-error" class="np-alert np-alert--error mb-4" role="alert" hidden></div>
+        <div class="np-field">
+          <label class="np-label" for="setup-code">Setup code</label>
+          <input class="np-input np-mono" id="setup-code" autocomplete="one-time-code" required autofocus placeholder="e.g. 3F9A1C0B7E2D">
+          <p class="np-help">Run <code>docker logs nginxpp</code> and look for "Setup code".</p>
+        </div>
+        <div class="np-field">
+          <label class="np-label" for="username">Admin username</label>
+          <input class="np-input" id="username" autocomplete="username" required value="admin">
+        </div>
+        <div class="np-field">
+          <label class="np-label" for="password">Password</label>
+          <input class="np-input" id="password" type="password" autocomplete="new-password" required minlength="10">
+          <meter id="pw-meter" min="0" max="5" low="2" high="3" optimum="5" value="0" class="w-full h-1.5 mt-2"></meter>
+          <p class="np-help" id="pw-hint">At least 10 characters</p>
+        </div>
+        <div class="np-field">
+          <label class="np-label" for="password2">Confirm password</label>
+          <input class="np-input" id="password2" type="password" autocomplete="new-password" required>
+        </div>
+        <button type="submit" class="np-btn np-btn--primary np-btn--lg np-btn--block mt-6">Create account &amp; sign in</button>
+      </form>
+    </section>
+  </main>
+  <script src="/auth.js"></script>
+</body>
+</html>
